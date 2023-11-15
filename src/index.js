@@ -109,7 +109,6 @@ server.delete('/api/films/delete/:id', async (req, res) => {
     }
 });
 
-
 server.post("/api/register", async (req, res) => {
     const email = req.body.email;
     const nombre = req.body.nombre;
@@ -137,7 +136,7 @@ server.post("/api/register", async (req, res) => {
         });
 });
 
-aapp.post("/api/login", async (request, response) => {
+server.post("/api/login", async (request, response) => {
         const body = request.body;
     
         //Buscar si el usuario existe en la bases de datos
