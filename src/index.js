@@ -23,7 +23,7 @@ async function getConnection() {
     return connection;
 }
 
-server.get('/films', async (req, res) => {
+server.get('/api/films', async (req, res) => {
     const connection = await getConnection();
     const query = 'SELECT * FROM films';
     const [results, fields] = await connection.query(query);
@@ -31,7 +31,7 @@ server.get('/films', async (req, res) => {
     res.json(results);
 });
 
-server.get('/films/:id', async (req, res) => {
+server.get('/api/films/:id', async (req, res) => {
     const connection = await getConnection();
     const filmsID = req.params.id;
     const query = 'SELECT * FROM films WHERE idMovie = ?';
@@ -40,15 +40,15 @@ server.get('/films/:id', async (req, res) => {
     res.json(results);
 });
 
-server.post('/films/create', async (req, res) => {
+server.post('/api/films/create', async (req, res) => {
     try {
         const connection = await getConnection();
-        const query_insert = 'INSERT INTO films (name, year, duration, sinopsis, classification) VALUES (?,?,?,?,?);';
+        const query_insert = 'INSERT INTO films (name, year, duration, synopsis, classification) VALUES (?,?,?,?,?);';
         const [results] = await connection.query(query_insert, [
             req.body.name,
             req.body.year,
             req.body.duration,
-            req.body.sinopsis,
+            req.body.synopsis,
             req.body.classification,
         ]);
         connection.end();
@@ -64,15 +64,15 @@ server.post('/films/create', async (req, res) => {
     }
 });
 
-server.patch('/films/edit/:id', async (req, res) => {
+server.put('/api/films/edit/:id', async (req, res) => {
     try {
         const connection = await getConnection();
-        const query = 'UPDATE films SET name = ?, year = ?, duration = ?, sinopsis = ?, classification = ? WHERE idMovie = ?';
+        const query = 'UPDATE films SET name = ?, year = ?, duration = ?, synopsis = ?, classification = ? WHERE idMovie = ?';
         const [results] = await connection.query(query, [
             req.body.name,
             req.body.year,
             req.body.duration,
-            req.body.sinopsis,
+            req.body.synopsis,
             req.body.classification,
             req.params.id
         ]);
@@ -88,7 +88,7 @@ server.patch('/films/edit/:id', async (req, res) => {
     }
 });
 
-server.delete('/films/delete/:id', async (req, res) => {
+server.delete('/api/films/delete/:id', async (req, res) => {
     try {
         const connection = await getConnection();
         const query = 'DELETE FROM films WHERE idMovie = ?';
