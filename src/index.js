@@ -139,7 +139,6 @@ server.post("/api/register", async (req, res) => {
 server.post("/api/login", async (request, response) => {
         const body = request.body;
     
-        //Buscar si el usuario existe en la bases de datos
         const sql = 'SELECT * FROM usuarios_db WHERE email = ?';
         const connection = await getConnection();
         const [users] = await connection.query(sql, [body.email]);
