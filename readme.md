@@ -5,7 +5,7 @@ Este es un ejemplo básico de una API de gestión de películas de Tim Burton de
 
 ## Estructura de la base de datos 🏗
 
-El esquema de la base de datos se encuentra en el archivo films.sql en la carpeta /database. Este archivo incluye el código necesario para crear las tablas, columnas y relaciones necesarias para la API.
+El esquema de la base de datos se encuentra en el archivo **`films.sql`** en la carpeta **`/database`**. Este archivo incluye el código necesario para crear las tablas, columnas y relaciones necesarias para la API.
 
 ## Configuración Inicial ⚙️
 - Node.js instalado en tu sistema.
