@@ -1,6 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2/promise');
+
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
 require('dotenv').config();
 
 const server = express();
@@ -106,3 +110,63 @@ server.delete('/api/films/delete/:id', async (req, res) => {
 });
 
 
+server.post("/api/register", async (req, res) => {
+    const email = req.body.email;
+    const nombre = req.body.nombre;
+    const password = req.body.password;
+    const passwordHash = await bcrypt.hash(password, 10); 
+        
+    let sql = 'INSERT INTO usuarios_db (email, nombre, hashed_password) VALUES (?,?,?);';
+
+        jwt.sign(password, "secret_key", async (err, token) => {
+        if (err) {
+            res.status(400).send({ msg: "Error" });
+        } else {
+            const connection = await getConnection();
+            const [results, fields] = await connection.query(sql, [
+            email,
+            nombre,
+            passwordHash,
+            ]);
+            connection.end();
+            res.json({ 
+                msg: "success", 
+                token: token, 
+                id: results.insertId });
+            }
+        });
+});
+
+aapp.post("/api/login", async (request, response) => {
+        const body = request.body;
+    
+        //Buscar si el usuario existe en la bases de datos
+        const sql = 'SELECT * FROM usuarios_db WHERE email = ?';
+        const connection = await getConnection();
+        const [users] = await connection.query(sql, [body.email]);
+        connection.end();
+    
+        const user = users[0];
+    
+        const passwordCorrect =
+            user === null
+                ? false
+                : await bcrypt.compare(body.password, user.passwordHash);
+
+        if (!(user && passwordCorrect)) {
+        return response.status(401).json({
+            error: "Datos incorrectos",
+        });
+        }
+
+        const userForToken = {
+        email: user.email,
+        id: user.id,
+        };
+    
+        const token = generateToken(userForToken);
+
+        response
+        .status(200)
+        .json({ token, username: user.username, name: user.name });
+    });
