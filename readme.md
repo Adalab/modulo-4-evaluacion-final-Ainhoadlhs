@@ -72,6 +72,7 @@ Para ver la API en el navegador, es necesario ejecutar **`npm run dev`** en la t
 * Postman
 * GitHub
 
+#### [![Autor](https://img.shields.io/badge/-%20Ainhoa%20de%20las%20Heras%20-%20Pink?logo=github&labelColor=grey&color=rgb(60%2C%20211%2C%20211))](https://github.com/Ainhoadlhs)
 #### Dedicado a todos los fans de Tim Burton 🎃✂🦇🎥💀👽
 
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⡶⠶⠚⠛⠉⠛⠛⠛⠛⠛⠒⠶⢦⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
