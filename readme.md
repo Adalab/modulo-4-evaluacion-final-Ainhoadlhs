@@ -28,9 +28,9 @@ A continuación, se proporciona una breve descripción de cómo un cliente puede
 
 **Listar Todas las Películas:** 
 
-Método: **GET**
-URL: http://localhost:4004/api/films
-Respuesta: JSON con todas las películas existentes.
+- Método: **GET**
+- URL: http://localhost:4004/api/films
+- Respuesta: JSON con todas las películas existentes.
 
 **Obtener Detalles de una Película por ID:**
 
@@ -43,7 +43,7 @@ Respuesta: JSON con todas las películas existentes.
 
 - Método: **POST**
 - URL: http://localhost:4004/api/films/create
-- Cuerpo: JSON con los datos de la nueva película.
+- Cuerpo: `{"name": "Nombre de la película", "year": "2022", "duration": "120 minutes", "synopsis": "Breve descripción de la trama", "classification": "PG-13" }`
 - Respuesta: JSON con el éxito de la operación y el ID de la nueva película.
 
 **Actualizar una Película por ID:**
@@ -51,7 +51,7 @@ Respuesta: JSON con todas las películas existentes.
 - Método: **PUT**
 - URL: http://localhost:4004/api/films/edit/:id
 - Parámetro de ruta: id es el identificador único de la película.
-- Cuerpo: JSON con los datos actualizados.
+- Cuerpo: `{"name": "Nombre de la película", "year": "2022", "duration": "120 minutes", "synopsis": "Breve descripción de la trama", "classification": "PG-13" }`
 - Respuesta: JSON con el éxito de la operación.
 
 **Eliminar una Película por ID:**
